@@ -3,8 +3,8 @@ from game_object import GameObject
 from pubsub import pub
 
 class Player(GameObject):
-    def __init__(self, position, kind, id, size):
-        super().__init__(position, kind, id, size)
+    def __init__(self, position, kind, id, size, physics):
+        super().__init__(position, kind, id, size, physics)
 
         self.speed = 0.1
 
