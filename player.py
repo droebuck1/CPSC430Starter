@@ -24,3 +24,16 @@ class Player(GameObject):
     @position.setter
     def position(self, value):
         self._position = value
+
+    # Override these so we can use the physics object size
+    # to allow for proper crouching
+    @property
+    def size(self):
+        if self.physics:
+            pass
+
+        return self._size
+
+    @size.setter
+    def size(self, value):
+        self._size = value
