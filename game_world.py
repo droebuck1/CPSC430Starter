@@ -134,3 +134,6 @@ class GameWorld:
             return self.physics_world.contactTest(game_object.physics).getContacts()
 
         return []
+
+    def reset(self):
+        pass
