@@ -95,7 +95,14 @@ class GameWorld:
         self.physics_world.doPhysics(dt)
 
     def load_world(self, filename):
-        # TODO: Need to do something here to remove old game objects and their views
+        for id in self.game_objects:
+            self.game_objects[id].deleted()
+            if self.game_objects[id].physics:
+                self.physics_world.removeRigidBody(self.game_objects[id].physics)
+
+            pub.sendMessage('destroy', game_object=self.game_objects[id])
+
+        self.game_objects.clear()
 
         with open(filename) as infile:
             level_data = json.load(infile)

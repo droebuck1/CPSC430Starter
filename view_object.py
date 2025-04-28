@@ -40,7 +40,7 @@ class ViewObject:
         pub.subscribe(self.toggle_texture, 'input')
 
     def deleted(self):
-        pass
+        self.cube.removeNode()
 
     def toggle_texture(self, events=None):
         if 'toggleTexture' in events:

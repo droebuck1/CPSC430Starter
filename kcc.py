@@ -50,10 +50,8 @@ class PandaBulletCharacterController:
         self.__setup(walkHeight, crouchHeight, stepHeight, radius)
         self.__mapMethods()
 
-        # Attempt to use a ghost node to detect collisions
-        self.__walkCapsuleNP.node().setPythonTag("owner", self.game_object)
-        self.__crouchCapsuleNP.node().setPythonTag("owner", self.game_object)
         self.game_object.physics = self.__walkCapsuleNP.node()
+        self.set_game_object(game_object)
 
         self.gravity = self.__world.getGravity().z if gravity is None else gravity
         self.setMaxSlope(50.0, True)
@@ -84,6 +82,14 @@ class PandaBulletCharacterController:
 
         self.__standUpCallback = [None, [], {}]
         self.__fallCallback = [None, [], {}]
+
+    def set_game_object(self, game_object):
+        self.__walkCapsuleNP.node().setPythonTag("owner", game_object)
+        self.__crouchCapsuleNP.node().setPythonTag("owner", game_object)
+        game_object.physics = self.game_object.physics
+
+        self.game_object = game_object
+        self.__updateCapsule()
 
     @property
     def __currentPos(self):

@@ -1,4 +1,4 @@
-from panda3d.core import Quat, lookAt, Vec3
+from panda3d.core import Quat, lookAt, Vec3, TransformState, VBase3
 from game_object import GameObject
 from pubsub import pub
 
@@ -17,6 +17,7 @@ class Player(GameObject):
         print(f"{self.kind} collides with {other.kind}")
 
     # Override these and don't defer to the physics object
+    # or the kcc won't work properly.
     @property
     def position(self):
         return self._position

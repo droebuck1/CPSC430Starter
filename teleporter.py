@@ -7,8 +7,7 @@ class Teleporter(GameObject):
         super().__init__(position, kind, id, size, physics)
 
     def collision(self, other):
-        # TODO: this is moving the camera attached to the player, but not the physics object
-        # used in the kcc
+        # Must use jump_to_position here to avoid messing with the player's kcc interaction
         current = other.position
-        other.position = (current[0], current[1]-5, current[2])
+        other.jump_to_position((current[0], current[1]-5, current[2]))
 

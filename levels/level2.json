@@ -1,0 +1,7 @@
+{
+  "objects": [
+    { "kind": "crate", "position": [-3, 0, 0], "size":  [1, 2, 1], "mass":  10, "class":  "GameObject"},
+    { "kind": "player", "position": [0, -20, 0], "size":  [1, 0.5, 0.25, 0.5], "mass":  10, "class":  "Player", "collision_source":  true},
+    { "kind": "crate", "position": [0, 0, -5], "size":  [1000, 1000, 0.5], "mass":  0, "class":  "GameObject"}
+  ]
+}
