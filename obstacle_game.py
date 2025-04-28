@@ -334,6 +334,9 @@ class ObstacleGameController(ShowBase):
 
         return False
 
+    # In obstacle_game.py file
+    # Modify the tick method in ObstacleGameController class
+
     def tick(self, task):
         # Handle escape key for mouse control
         if 'toggleMouseMove' in self.input_events:
@@ -357,7 +360,6 @@ class ObstacleGameController(ShowBase):
                                                     self.forward(self.player.getHpr(), self.player.getPos(), 5))
         if picked_object and picked_object.getNode() and picked_object.getNode().getPythonTag("owner"):
             picked_object.getNode().getPythonTag("owner").selected()
-
 
         # Handle mouse movement for camera rotation
         if self.CursorOffOn == 'Off':
@@ -395,6 +397,14 @@ class ObstacleGameController(ShowBase):
         player_pos = self.player.getPos()
         if player_pos[0] > 95:
             print("Congratulations! You completed the obstacle course!")
+            # Optional: exit the game after a delay
+            # import sys
+            # sys.exit()
+
+        # Check if player has fallen below a threshold
+        if player_pos[2] < -10:  # Adjust this value based on your level design
+            print("Game Over! You fell off the course.")
+            self.game_world.set_property("quit", True)  # This will trigger exit in the next frame
 
         # Update physics and game state
         dt = globalClock.getDt()
